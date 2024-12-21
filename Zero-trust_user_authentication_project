@@ -1,0 +1,186 @@
+import hashlib
+
+# Dummy data for users
+users = {
+    'alice': {'password': hashlib.sha256('password123'.encode()).hexdigest(), 'role': 'admin'},
+    'bob': {'password': hashlib.sha256('mypassword'.encode()).hexdigest(), 'role': 'user'}
+}
+
+# Function to authenticate user
+def authenticate(username, password):
+    if username in users:
+        hashed_password = hashlib.sha256(password.encode()).hexdigest()
+        if users[username]['password'] == hashed_password:
+            return users[username]['role']
+    return None
+
+# Function to check access
+def has_access(role, resource):
+    access_control = {
+        'admin': ['dashboard', 'settings', 'reports'],
+        'user': ['dashboard']
+    }
+    
+    if role in access_control:
+        return resource in access_control[role]
+    return False
+
+# Simulate a request
+username = 'alice'
+password = 'password123'
+resource = 'settings'
+
+# Authenticate user
+role = authenticate(username, password)
+
+if role:
+    print(f"{username} authenticated as {role}")
+    if has_access(role, resource):
+        print(f"{username} has access to {resource}")
+    else:
+        print(f"{username} does not have access to {resource}")
+else:
+    print(f"Authentication failed for {username}")
+
+alice authenticated as admin
+alice has access to settings
+--------------------------------------------------------
+import hashlib
+
+# Dummy data for users
+users = {
+    'alice': {'password': hashlib.sha256('password123'.encode()).hexdigest(), 'role': 'admin'},
+    'bob': {'password': hashlib.sha256('mypassword'.encode()).hexdigest(), 'role': 'user'}
+}
+
+# Function to authenticate user
+def authenticate(username, password):
+    if username in users:
+        hashed_password = hashlib.sha256(password.encode()).hexdigest()
+        if users[username]['password'] == hashed_password:
+            return users[username]['role']
+    return None
+
+# Function to check access
+def has_access(role, resource):
+    access_control = {
+        'admin': ['dashboard', 'settings', 'reports'],
+        'user': ['dashboard']
+    }
+    
+    if role in access_control:
+        return resource in access_control[role]
+    return False
+
+# Simulate a request
+username = 'alice'
+password = 'wrongpassword'
+resource = 'settings'
+
+# Authenticate user
+role = authenticate(username, password)
+
+if role:
+    print(f"{username} authenticated as {role}")
+    if has_access(role, resource):
+        print(f"{username} has access to {resource}")
+    else:
+        print(f"{username} does not have access to {resource}")
+else:
+    print(f"Authentication failed for {username}")
+
+Authentication failed for alice
+------------------------------------------------------
+import hashlib
+
+# Dummy data for users
+users = {
+    'alice': {'password': hashlib.sha256('password123'.encode()).hexdigest(), 'role': 'admin'},
+    'bob': {'password': hashlib.sha256('mypassword'.encode()).hexdigest(), 'role': 'user'}
+}
+
+# Function to authenticate user
+def authenticate(username, password):
+    if username in users:
+        hashed_password = hashlib.sha256(password.encode()).hexdigest()
+        if users[username]['password'] == hashed_password:
+            return users[username]['role']
+    return None
+
+# Function to check access
+def has_access(role, resource):
+    access_control = {
+        'admin': ['dashboard', 'settings', 'reports'],
+        'user': ['dashboard']
+    }
+    
+    if role in access_control:
+        return resource in access_control[role]
+    return False
+
+# Simulate a request
+username = 'bob'
+password = 'mypassword'
+resource = 'settings'
+
+# Authenticate user
+role = authenticate(username, password)
+
+if role:
+    print(f"{username} authenticated as {role}")
+    if has_access(role, resource):
+        print(f"{username} has access to {resource}")
+    else:
+        print(f"{username} does not have access to {resource}")
+else:
+    print(f"Authentication failed for {username}")
+
+bob authenticated as user
+bob does not have access to settings
+-----------------------------------------------------
+import hashlib
+
+# Dummy data for users
+users = {
+    'alice': {'password': hashlib.sha256('password123'.encode()).hexdigest(), 'role': 'admin'},
+    'bob': {'password': hashlib.sha256('mypassword'.encode()).hexdigest(), 'role': 'user'}
+}
+
+# Function to authenticate user
+def authenticate(username, password):
+    if username in users:
+        hashed_password = hashlib.sha256(password.encode()).hexdigest()
+        if users[username]['password'] == hashed_password:
+            return users[username]['role']
+    return None
+
+# Function to check access
+def has_access(role, resource):
+    access_control = {
+        'admin': ['dashboard', 'settings', 'reports'],
+        'user': ['dashboard']
+    }
+    
+    if role in access_control:
+        return resource in access_control[role]
+    return False
+
+# Simulate a request
+username = 'Charlie'
+password = 'mypassword'
+resource = 'dashboard'
+
+# Authenticate user
+role = authenticate(username, password)
+
+if role:
+    print(f"{username} authenticated as {role}")
+    if has_access(role, resource):
+        print(f"{username} has access to {resource}")
+    else:
+        print(f"{username} does not have access to {resource}")
+else:
+    print(f"Authentication failed for {username}")
+
+Authentication failed for Charlie
+
